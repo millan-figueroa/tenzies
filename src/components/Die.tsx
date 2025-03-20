@@ -1,3 +1,3 @@
 export default function Die() {
-  return <h2>This is Die.</h2>;
+  return <div className="m-4 p-2 border-2">Die.</div>;
 }
