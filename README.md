@@ -1,40 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Tenzies Dice Game
 
-## Getting Started
+Welcome to **Tenzies**, a fun and addictive dice game built with **React**, **TypeScript**, and **Tailwind CSS**! This project is a modern take on the classic Tenzies game, where the goal is to roll the dice until all of them show the same number. It's a great way to practice your React skills while having fun!
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Interactive Dice Rolling**: Click the dice to hold them, and roll the rest until all dice match.
+- **Win Condition**: The game ends when all dice show the same number.
+- **Responsive Design**: Built with Tailwind CSS for a sleek and responsive user interface.
+- **Type Safety**: Written in TypeScript for better code reliability and developer experience.
+- **Customizable**: Easily extend or modify the game logic and styles.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Installation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+To run this project locally, follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**:
 
-## Learn More
+   ```bash
+   git clone https://github.com/your-username/tenzies-game.git
+   cd tenzies-game
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Start the development server**:
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Open the app**:
+   Visit `http://localhost:3000` in your browser to play the game.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+---
+
+## Usage
+
+- **Roll the Dice**: Click the "Roll" button to roll the dice.
+- **Hold Dice**: Click on individual dice to "hold" them. Held dice will not roll on the next turn.
+- **Win the Game**: Keep rolling and holding dice until all dice show the same number.
+- **Reset the Game**: Once you win, click the "New Game" button to start over.
+
+---
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A typed superset of JavaScript for safer and more predictable code.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+- **Next.js**: A React framework for server-rendered applications and static site generation.
+
+---
+
+Enjoy playing **Tenzies**! If you have any questions or feedback, feel free to open an issue or reach out.🎲
