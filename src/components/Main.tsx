@@ -16,16 +16,20 @@ export default function Main() {
     return newDice;
   }
 
+  function rollDice() {
+    setDice(generateAllNewDice());
+  }
+
   const diceElements = dice.map((num) => <Die value={num} />);
 
   return (
-    <main className="bg-slate-50 h-full flex flex-col justify-center items-center rounded-b-lg">
-      <div className="grid grid-cols-5 gap-5 px-10 py-30 font-[Karla]">
+    <main className="bg-gray-100 h-full flex flex-col justify-center items-center rounded-b-lg">
+      <div className="grid grid-cols-5 gap-5 px-10 py-15 font-[Karla]">
         {diceElements}
       </div>
       <button
-        className="bg-blue-600 text-white p-5"
-        onClick={generateAllNewDice}
+        className="p-5 mb-5 bg-gradient-to-bl from-violet-500 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-700 active:scale-95 transition-all duration-200 text-white rounded-lg font-bold text-2xl"
+        onClick={rollDice}
       >
         Roll
       </button>
