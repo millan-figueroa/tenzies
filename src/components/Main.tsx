@@ -9,18 +9,17 @@ export default function Main() {
   const [dice, setDice] = React.useState(generateAllNewDice());
 
   function generateAllNewDice() {
-    let newDice = [];
-    for (let i = 0; i < 10; i++) {
-      newDice.push(Math.floor(Math.random() * 6));
-    }
-    return newDice;
+    return new Array(10).fill(0).map(() => ({
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+    }));
   }
 
   function rollDice() {
     setDice(generateAllNewDice());
   }
 
-  const diceElements = dice.map((num) => <Die value={num} />);
+  const diceElements = dice.map((dieObj) => <Die value={dieObj.value} />);
 
   return (
     <main className="bg-slate-200 h-full flex flex-col justify-center items-center rounded-b-lg">
