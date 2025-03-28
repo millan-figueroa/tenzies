@@ -17,8 +17,18 @@ export default function Main() {
     setDice(generateAllNewDice());
   }
 
+  function hold(id: string) {
+    console.log("Holding die with id:", id);
+  }
+
   const diceElements = dice.map((dieObj) => (
-    <Die key={dieObj.id} value={dieObj.value} isHeld={true} />
+    <Die
+      key={dieObj.id}
+      value={dieObj.value}
+      isHeld={false}
+      hold={() => hold(dieObj.id)}
+      id={dieObj.id}
+    />
   ));
 
   return (
