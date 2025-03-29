@@ -9,7 +9,7 @@ export default function Main() {
     return new Array(10).fill(0).map(() => ({
       id: nanoid(),
       value: Math.ceil(Math.random() * 6),
-      isHeld: true,
+      isHeld: false,
     }));
   }
 
@@ -18,14 +18,18 @@ export default function Main() {
   }
 
   function hold(id: string) {
-    console.log("Holding die with id:", id);
+    setDice((prevDice) =>
+      prevDice.map((die) => {
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      })
+    );
   }
 
   const diceElements = dice.map((dieObj) => (
     <Die
       key={dieObj.id}
       value={dieObj.value}
-      isHeld={false}
+      isHeld={dieObj.isHeld}
       hold={() => hold(dieObj.id)}
       id={dieObj.id}
     />
