@@ -5,6 +5,10 @@ import { nanoid } from "nanoid";
 export default function Main() {
   const [dice, setDice] = React.useState(generateAllNewDice());
 
+  let gameWon =
+    dice.every((die) => die.isHeld) &&
+    dice.every((die) => die.value === dice[0].value);
+
   // Function to generate an array of 10 new dice objects
   function generateAllNewDice() {
     return new Array(10).fill(0).map(() => ({
@@ -56,7 +60,7 @@ export default function Main() {
         className="px-15 py-4 mb-5 bg-gradient-to-bl from-violet-500 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-700 active:scale-95 transition-all duration-200 text-white rounded-lg font-bold text-2xl"
         onClick={rollDice}
       >
-        Roll
+        {gameWon ? "🎲 New Game" : "🤞🏼 Roll Dice"}
       </button>
     </main>
   );
