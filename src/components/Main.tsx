@@ -16,26 +16,24 @@ export default function Main() {
 
   // Function to roll the dice (update the values of the dice that are not held)
   function rollDice() {
-    setDice((prevDice) => {
-      return prevDice.map((die) => {
-        return die.isHeld
-          ? die
-          : { ...die, value: Math.ceil(Math.random() * 6) };
-      });
-    });
+    setDice((prevDice) =>
+      prevDice.map((die) =>
+        die.isHeld ? die : { ...die, value: Math.ceil(Math.random() * 6) }
+      )
+    );
   }
 
   // Function to toggle the hold state of a die
   function hold(id: string) {
     setDice((prevDice) =>
-      prevDice.map((die) => {
-        return die.id === id
+      prevDice.map((die) =>
+        die.id === id
           ? {
               ...die,
               isHeld: !die.isHeld,
             }
-          : die;
-      })
+          : die
+      )
     );
   }
 
