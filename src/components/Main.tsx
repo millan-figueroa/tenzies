@@ -5,7 +5,7 @@ import ReactConfetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
 export default function Main() {
-  const [dice, setDice] = React.useState(generateAllNewDice());
+  const [dice, setDice] = React.useState(() => generateAllNewDice());
 
   let gameWon =
     dice.every((die) => die.isHeld) &&
