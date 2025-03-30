@@ -87,7 +87,7 @@ export default function Main() {
           <p>Congratulations! You won! Press "New Game" to start again.</p>
         )}
       </div>
-      <div className="grid grid-cols-5 gap-5 px-10 py-15 font-[Karla]">
+      <div className="grid grid-cols-5 gap-5 px-10 py-12 font-[Karla]">
         {diceElements}
       </div>
       <button
