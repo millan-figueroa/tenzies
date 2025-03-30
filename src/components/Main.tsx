@@ -61,7 +61,7 @@ export default function Main() {
       </div>
       <button
         className="px-15 py-3 mb-7 bg-gradient-to-bl from-violet-500 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-700 active:scale-95 transition-all duration-200 text-white rounded-lg font-bold text-2xl"
-        onClick={rollDice}
+        onClick={gameWon ? () => setDice(generateAllNewDice()) : rollDice}
       >
         {gameWon ? "🎲 New Game" : "🤞🏼 Roll Dice"}
       </button>
