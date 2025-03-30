@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Die from "./Die";
 import { nanoid } from "nanoid";
+import ReactConfetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 export default function Main() {
   const [dice, setDice] = React.useState(generateAllNewDice());
@@ -53,11 +55,12 @@ export default function Main() {
 
   return (
     <main className="bg-slate-200 h-full flex flex-col justify-center items-center rounded-b-lg">
+      {gameWon && <ReactConfetti />}
       <div className="grid grid-cols-5 gap-5 px-10 py-15 font-[Karla]">
         {diceElements}
       </div>
       <button
-        className="px-15 py-4 mb-5 bg-gradient-to-bl from-violet-500 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-700 active:scale-95 transition-all duration-200 text-white rounded-lg font-bold text-2xl"
+        className="px-15 py-3 mb-7 bg-gradient-to-bl from-violet-500 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-700 active:scale-95 transition-all duration-200 text-white rounded-lg font-bold text-2xl"
         onClick={rollDice}
       >
         {gameWon ? "🎲 New Game" : "🤞🏼 Roll Dice"}
