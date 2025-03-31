@@ -13,6 +13,7 @@ export default function Main() {
   }, []);
 
   const { width, height } = useWindowSize();
+
   let gameWon =
     dice.every((die) => die.isHeld) &&
     dice.every((die) => die.value === dice[0].value);
@@ -34,14 +35,23 @@ export default function Main() {
     }));
   }
 
-  // Function to roll the dice (update the values of the dice that are not held)
+  const [rollCount, setRollCount] = useState(() => {
+    return Number(localStorage.getItem("rollCount")) || 0;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("rollCount", String(rollCount));
+  }, [rollCount]);
+
   function rollDice() {
     setDice((prevDice) =>
       prevDice.map((die) =>
         die.isHeld ? die : { ...die, value: Math.ceil(Math.random() * 6) }
       )
     );
+    setRollCount((prevCount) => prevCount + 1);
   }
+  console.log({ rollCount });
 
   // Function to toggle the hold state of a die
   function hold(id: string) {
@@ -81,10 +91,23 @@ export default function Main() {
       <button
         ref={newGameButtonRef}
         className="px-15 py-3 mb-7 bg-gradient-to-bl from-violet-500 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-700 active:scale-95 transition-all duration-200 text-white rounded-lg font-bold text-2xl"
-        onClick={gameWon ? () => setDice(generateAllNewDice()) : rollDice}
+        onClick={
+          gameWon
+            ? () => {
+                setDice(generateAllNewDice());
+                setRollCount(0);
+                localStorage.removeItem("rollCount");
+              }
+            : rollDice
+        }
       >
         {gameWon ? "🎲 New Game" : "🤞🏼 Roll Dice"}
       </button>
+      <div>
+        <h2 className="text-sm text-bold mb-2 font-[Karla]">
+          Roll count: {rollCount}
+        </h2>
+      </div>
     </main>
   );
 }
