@@ -4,27 +4,15 @@ import { nanoid } from "nanoid";
 import ReactConfetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
-/**
- * Challenge:
- * Make it so when the game is over, the "New Game" button
- * automatically receives keyboard focus so keyboard users
- * can easily trigger that button without having to tab
- * through all the dice first.
- *
- * Hints:
- * 1. Focusing a DOM element with the DOMNode.focus() method
- *    requires accessing the native DOM node. What tool have
- *    we learned about that allows us to do that?
- *
- * 2. Automatically calling the .focus() on a DOM element when
- *    the game is won requires us to synchronize the local
- *    `gameWon` variable with an external system (the DOM). What
- *    tool have we learned about that allows us to do that?
- */
-
 export default function Main() {
-  const [dice, setDice] = React.useState(() => generateAllNewDice());
+  const [dice, setDice] = React.useState<
+    { id: string; value: number; isHeld: boolean }[]
+  >([]);
+  useEffect(() => {
+    setDice(generateAllNewDice());
+  }, []);
 
+  const { width, height } = useWindowSize();
   let gameWon =
     dice.every((die) => die.isHeld) &&
     dice.every((die) => die.value === dice[0].value);
@@ -81,7 +69,7 @@ export default function Main() {
 
   return (
     <main className="bg-slate-200 h-full flex flex-col justify-center items-center rounded-b-lg">
-      {gameWon && <ReactConfetti />}
+      {gameWon && <ReactConfetti width={width} height={height} />}
       <div aria-live="polite" className="sr-only">
         {gameWon && (
           <p>Congratulations! You won! Press "New Game" to start again.</p>
