@@ -49,7 +49,7 @@ export default function Die({ value, isHeld, hold }: DieProps) {
             ${isHeld ? "held" : "not held"}`}
       className={`h-[50px] w-[50px] shadow-md rounded-lg  hover:border-1 hover:border-gray-900  cursor-pointer ${
         isHeld
-          ? "bg-gradient-to-bl from-violet-400 to-fuchsia-400"
+          ? "bg-gradient-to-bl from-violet-600 to-fuchsia-300"
           : "bg-gradient-to-bl from-slate-100 to-slate-300"
       }`}
     >

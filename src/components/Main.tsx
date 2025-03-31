@@ -77,6 +77,10 @@ export default function Main() {
     />
   ));
 
+  const [bestRollCount, setBestRollCount] = useState(() => {
+    return Number(localStorage.getItem("bestRollCount")) || null;
+  });
+
   return (
     <main className="bg-slate-200 h-full flex flex-col justify-center items-center rounded-b-lg">
       {gameWon && <ReactConfetti width={width} height={height} />}
@@ -97,16 +101,23 @@ export default function Main() {
                 setDice(generateAllNewDice());
                 setRollCount(0);
                 localStorage.removeItem("rollCount");
+                setBestRollCount((prevBest) => {
+                  const newBest =
+                    prevBest === null || rollCount < prevBest
+                      ? rollCount
+                      : prevBest;
+                  localStorage.setItem("bestRollCount", String(newBest));
+                  return newBest;
+                });
               }
             : rollDice
         }
       >
-        {gameWon ? "🎲 New Game" : "🤞🏼 Roll Dice"}
+        {gameWon ? "🕹️ New Game" : "🎲 Roll Dice"}
       </button>
-      <div>
-        <h2 className="text-sm text-bold mb-2 font-[Karla]">
-          Roll count: {rollCount}
-        </h2>
+      <div className="mb-2 text-sm font-bold font-[Karla]">
+        <span className="px-2">Current roll count: {rollCount}</span>
+        <span className="px-2">🏆 Best Roll Count: {bestRollCount}</span>
       </div>
     </main>
   );
