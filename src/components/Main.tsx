@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Die from "./Die";
 import { nanoid } from "nanoid";
 import ReactConfetti from "react-confetti";
@@ -8,21 +8,14 @@ export default function Main() {
   const [dice, setDice] = React.useState<
     { id: string; value: number; isHeld: boolean }[]
   >([]);
+
   useEffect(() => {
     setDice(generateAllNewDice());
   }, []);
 
-  const [value, setValue] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setValue(localStorage.getItem("myKey"));
-    }
-  }, []);
-
   const { width, height } = useWindowSize();
 
-  let gameWon =
+  const gameWon =
     dice.every((die) => die.isHeld) &&
     dice.every((die) => die.value === dice[0].value);
 
@@ -44,7 +37,10 @@ export default function Main() {
   }
 
   const [rollCount, setRollCount] = useState(() => {
-    return Number(localStorage.getItem("rollCount")) || 0;
+    if (typeof window !== "undefined") {
+      return Number(localStorage.getItem("rollCount")) || 0;
+    }
+    return 0; // Default value for SSR
   });
 
   useEffect(() => {
@@ -86,7 +82,10 @@ export default function Main() {
   ));
 
   const [bestRollCount, setBestRollCount] = useState(() => {
-    return Number(localStorage.getItem("bestRollCount")) || null;
+    if (typeof window !== "undefined") {
+      return Number(localStorage.getItem("bestRollCount")) || null;
+    }
+    return null; // Default value for SSR
   });
 
   return (
@@ -108,13 +107,17 @@ export default function Main() {
             ? () => {
                 setDice(generateAllNewDice());
                 setRollCount(0);
-                localStorage.removeItem("rollCount");
+                if (typeof window !== "undefined") {
+                  localStorage.removeItem("rollCount");
+                }
                 setBestRollCount((prevBest) => {
                   const newBest =
                     prevBest === null || rollCount < prevBest
                       ? rollCount
                       : prevBest;
-                  localStorage.setItem("bestRollCount", String(newBest));
+                  if (typeof window !== "undefined") {
+                    localStorage.setItem("bestRollCount", String(newBest));
+                  }
                   return newBest;
                 });
               }

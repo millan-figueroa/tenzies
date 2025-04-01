@@ -39,7 +39,7 @@ const diceFaces: Record<number, boolean[][]> = {
 };
 
 export default function Die({ value, isHeld, hold }: DieProps) {
-  const face = diceFaces[value] ?? [];
+  diceFaces[value] ?? [];
 
   return (
     <button
