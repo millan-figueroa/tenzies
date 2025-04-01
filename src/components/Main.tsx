@@ -12,6 +12,14 @@ export default function Main() {
     setDice(generateAllNewDice());
   }, []);
 
+  const [value, setValue] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setValue(localStorage.getItem("myKey"));
+    }
+  }, []);
+
   const { width, height } = useWindowSize();
 
   let gameWon =
