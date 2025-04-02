@@ -93,7 +93,10 @@ export default function Main() {
       {gameWon && <ReactConfetti width={width} height={height} />}
       <div aria-live="polite" className="sr-only">
         {gameWon && (
-          <p>Congratulations! You won! Press "New Game" to start again.</p>
+          <p>
+            Congratulations! You won! Press <strong>New Game</strong> to start
+            again.
+          </p>
         )}
       </div>
       <div className="grid grid-cols-5 gap-5 px-10 py-12 font-[Karla]">
